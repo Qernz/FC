@@ -1,7 +1,7 @@
 #include <iostream>
-#include<fstream>
-#include<string>
-#include<cmath>
+#include <fstream>
+#include <string>
+#include <cmath>
 using namespace std;
 int main()
 {
@@ -13,6 +13,7 @@ int main()
   cin >> r;
   cout << "x = ";
   cin >> x;*/
+  
   ifstream dados;
   dados.open("dados.txt");
   dados >> r >> x >> n_max;
