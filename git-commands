@@ -1,0 +1,22 @@
+# antes de começar a trabalhar, para puxar quaisquer mudanças que tenham sido feitas no servidor entretanto
+git pull
+
+# adiciona ficheiros para o proximo commit (é preciso fazer explicitamente quando se criam novos ficheiros)
+git add <nome(s) do(s) ficheiro(s)>
+
+# guardar as mudanças no árvore local
+git commit -am "mensagem sobre as mudanças"
+
+# enviar o ultimo commit feito na árvore local para a árvore remota (no servidor)
+git push
+
+# ver historial de commits (da árvore local)
+git log
+# ou para ver numa versão mais condensada
+git log --graph --oneline
+
+# ver a diferenças entre os ficheiros que estão na pasta e os que estão na árvore
+git diff
+
+# ver estado dos ficheiros da pasta (modificado, novo, apagado, etc.)
+git status
