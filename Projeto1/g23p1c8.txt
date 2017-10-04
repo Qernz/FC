@@ -1,0 +1,2 @@
+Nota-se que a convergência deste método de Monte-Carlo não é a melhor, visto que mesmo após 10000 iterações,
+apenas apresenta uma exatidão a 3 casas décimais comparando com o valor tabelado.
