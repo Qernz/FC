@@ -19,7 +19,7 @@ int main()
   dados.close();
   ofstream dados2;
   dados2.open("dados5.txt");
-  for (r = 2.4; r < 4; r+= 0.1)
+  for (r = 2.4; r < 4; r+= 0.005)
   {
     for (n = 1; n <= n_max; n++)
     {
