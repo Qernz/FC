@@ -18,27 +18,27 @@ int main()
     cin >> x;
 
     // criar tabela para os valores
-    double **tabela = new double *[2];
-    for(int i = 0; i < 2; i++) tabela[i] = new double[n_max];
+    double **table = new double *[2];
+    for(int i = 0; i < 2; i++) table[i] = new double[n_max];
 
     ofstream dados;
     dados.open("data4.txt");
     for(int n = 0; n < n_max; n++) // ciclo das iteradas
     {
         dados << x/pow(2., 32) << " ";
-        tabela[0][n] = x;
+        table[0][n] = x;
         x = generator(x);
         dados << x/pow(2., 32) << endl;
-        tabela[1][n] = x;
+        table[1][n] = x;
     }
     dados.close();
 
     // limpar memoria da tabela
     for(int i = 0; i < 2; i++)
     {
-        delete[] tabela[i];
+        delete[] table[i];
     }
-    delete[] tabela;
+    delete[] table;
     return 0;
 }
 
