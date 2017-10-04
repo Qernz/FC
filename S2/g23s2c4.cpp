@@ -4,11 +4,11 @@
 #include "markov.h"
 
 using namespace std;
-
+const double pi = 3.141592653589793238463;
 // probability function
-float p(float x) {}
+float p(float x) {return (1/pow(pi,(1/4))*exp(-(x*x)/(2)));}
 // function to integrate
-float f(float x) {}
+float f(float x) {return pow(x,4);}
 
 int main ()
 {
@@ -16,7 +16,7 @@ int main ()
     // read arguments from user
     cout << "Markov chain size: "; cin >> n;
     cout << "m: "; cin >> m;
-    float* markov_chain = markov(n, m, &p); 
+    float* markov_chain = markov(n, m, &p);
 
     // calculate integral
     float integral = 0;
