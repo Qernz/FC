@@ -10,22 +10,20 @@ int main()
     int n = 0; // variavel auxiliar de iteracao
     double **v = new double *[2];
     int ni= 0; int ne = 0;
-    for(int i =0; i<2; i++)
-    {
-        v[i] = new double[n];
-    }
-
     cout << " insira o numero de iteradas: ";
     cin >> n_max;
     cout << "insira o valor da iterada inicial: ";
     cin >> x;
+    for(int i =0; i<2; i++)
+    {
+        v[i] = new double[n_max];
+    }
     ofstream dados, dentro, fora;
 
     dados.open("data3.txt");
     dentro.open("dentro.txt");
     fora.open("fora.txt");
     //dados << n << " " << x << endl; // escrever iterada inicial
-    //cout << " AIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII, AJUDAAAAAAAAAAAAAA CARALHOOO"<< endl;
     for( n = 0; n < n_max; n++ ) //ciclo das iteradas
     {
         dados << x/pow(2.,32) << " ";
@@ -37,27 +35,26 @@ int main()
         if (sqrt(pow((v[0][n]), 2)+pow((v[1][n]), 2)) < 1)
         {
             ni ++;
-            dentro << v[0][n] << " " << v[1][n];
+            dentro << v[0][n] << " " << v[1][n] << endl;
 
         }
         else
         {
              ne ++;
-             fora << v[0][n] << " " << v[1][n];
+             fora << v[0][n] << " " << v[1][n] << endl;
 
-             //cout << n <<" " << " AIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII, AJUDAAAAAAAAAAAAAA CARALHOOO"<< endl;
+
         }
     }
-    /*dados.close();
+    cout << ni << " " << ne << endl;
+    cout << "o valor do pi eh: " << 4*(((float)ni)/((float)ni+(float)ne)) <<endl;
+    dados.close();
     dentro.close();
-    fora.close();*/
-    //cout << n <<" " << " AIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII, AJUDAAAAAAAAAAAAAA CARALHOOO"<< endl;
+    fora.close();
+
     for(int i = 0; i < 2; i++)
     {
-        cout << i <<" " << " AIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII, AJUDAAAAAAAAAAAAAA CARALHOOO"<< endl;
         delete[] v[i];
-        cout << i <<" " << " AIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII, AJUDAAAAAAAAAAAAAA CARALHOOO"<< endl;
-        //cout << " ai"<< endl;
     }
     delete[] v;
     return 0;

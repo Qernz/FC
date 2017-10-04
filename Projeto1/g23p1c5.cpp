@@ -9,15 +9,14 @@ int main()
     double x=.5; // r eh o parametro geomehtrico, x eh o valor inicial
     int n = 0; // variavel auxiliar de iteracao
     double **v = new double *[2];
-    for(i =0; i<2; i++)
-    {
-        v[i] = new double[n];
-    }
-
     cout << " insira o numero de iteradas: ";
     cin >> n_max;
     cout << "insira o valor da iterada inicial: ";
     cin >> x;
+    for(int i =0; i<2; i++)
+    {
+        v[i] = new double[n_max];
+    }
     ofstream dados;
     dados.open("data2.txt");
     //dados << n << " " << x << endl; // escrever iterada inicial
@@ -31,7 +30,7 @@ int main()
         v[1][n] = x;
     }
     dados.close();
-    for( i = 0; i < 2; i++)
+    for(int i = 0; i < 2; i++)
     {
         delete[] v[i];
     }
