@@ -7,7 +7,7 @@
 using namespace std;
 const double pi = 3.141592653589793238463;
 // probability function
-float p(float x) {return (1/pow(pi,(1/2))*exp(-(x*x)));}
+float p(float x) {return (1/pow(pi,(1/2)))*exp(-(x*x));}
 // function to integrate
 float f(float x) {return pow(x,4);}
 
@@ -28,8 +28,8 @@ int main ()
     float integral = 0;
     for(int i = 0; i < n; i++)
     {
-         integral += f(markov_chain[i]);
-         cout << markov_chain[i] << " " << f(markov_chain[i]) << endl;
+        integral += f(markov_chain[i]);
+        cout << markov_chain[i] << " " << f(markov_chain[i]) << endl;
     }
     integral /= n;
 

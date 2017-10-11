@@ -8,9 +8,7 @@ float metropolis(float x0, float r, int m, float (*p)(float))
     float c2 = x0;
     for(int i = 0; i < m; i++)
     {
-        rn = ((((float)rand())/((float)RAND_MAX)) * 2*r) - r;
-        //cout << ((2*r)/((float)RAND_MAX)) << endl;
-        //cout << rn << endl;
+        rn = ((float)rand()) * ((2*r) /((float)RAND_MAX)) - r;
         cx = rn + c2;
         if((p(cx)/p(c2)) > (float) rand()/((float) RAND_MAX))
         {
