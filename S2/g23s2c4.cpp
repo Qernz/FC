@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <cmath>
 #include <cstdlib>
 #include <time.h>
@@ -26,11 +27,15 @@ int main ()
     float* markov_chain = markov(r, m, &p, n, a, b);
     // calculate integral
     float integral = 0;
+    ofstream output("markov_chain.txt");
     for(int i = 0; i < n; i++)
     {
+        if(i != n - 1) output << markov_chain[i] << " " << markov_chain[i + 1] << endl;
+
         integral += f(markov_chain[i]);
-        cout << markov_chain[i] << " " << f(markov_chain[i]) << endl;
+        //cout << markov_chain[i] << " " << f(markov_chain[i]) << endl;
     }
+    output.close();
     integral /= n;
 
     // print to cout and file the result
