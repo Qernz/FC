@@ -21,9 +21,9 @@ int main()
 void Euler_method(float h, int n, float (*f)(float, float), float y0)
 {
     ofstream dados;
-    dados.open("data.txt");
+    dados.open("data2.txt");
     float t = 0;
-    int y = y0;
+    float y = y0;
     float k1, k2, k3, k4;
     for (int i = 0; i < n; i++)
     {
@@ -33,7 +33,7 @@ void Euler_method(float h, int n, float (*f)(float, float), float y0)
         k4 = f(t + h, y + h*k3);
 
         dados << t << " " << y << /*" " << f(t,y) <<*/ endl;
-        y = y + (h/6) * (k1 + k2+ k3 + k4 );
+        y = y + (h/6) * (k1 + 2 *k2+ 2*k3 + k4 );
         t += h;
     }
     dados.close();
