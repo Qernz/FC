@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 
-float f (float t , float v, float x) {return -x -0.5*v + 0.5*sin(0.75*t); }
+float f (float t , float v, float x) {return -x -0.5*v + 0.5*sin(sqrt(15/16)*t); }
 
 int main()
 {
@@ -19,7 +19,7 @@ int main()
 
     input >> h >> n >> v >> x ;
     ofstream output;
-    output.open("1a)wf*3.txt");
+    output.open("1a)wf.txt");
 
     float kv1, kv2, kv3, kv4, kx1, kx2, kx3, kx4;
     for (int i = 0; i < n; i++)
