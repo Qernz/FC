@@ -1,9 +1,10 @@
 #include <iostream>
 #include <cmath>
-#include "Euler2.h"
 #include <fstream>
 using namespace std;
-
+// dif eq : y' = -lambda*y
+float f (float t , float y, float x) {return -x; }
+void Euler_method(float h, int n, float (*f)(float, float, float), float y0, float x0);
 
 int main()
 {

@@ -1,3 +1,4 @@
+#include <vector>
 class Vector {
 public:
     float* r;
@@ -18,7 +19,14 @@ public:
         delete[] r;
     }
 
-    Vector operator+(Vector lhs, const Vector& rhs){
-        
+    Vector operator+(const Vector& lhs)
+    {
+        int n = size();
+        Vector temp(0,0);
+        for (int i = 0; i<n ; i++)
+        {
+            temp[i] = lhs[i] + rhs[i];
+        }
+        return temp;
     }
-}
+};
