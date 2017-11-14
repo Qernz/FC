@@ -1,7 +1,9 @@
 /* 2 and 3 dimensional vector class
 - the being only in a headers does affect compile
 times but as these are small projects this effect
-should be tiny */
+should be small enough.
+- the operator overload follow the most common convention in the C++
+community. */
 
 #ifndef VECTOR_H
 #define VECTOR_H
@@ -11,30 +13,34 @@ should be tiny */
 
 class Vector {
 private:
-    float* c; // componentes
+    double* c; // componentes
 public:
     int dim;
 
     Vector(int n) {
-        dim = n; c = new float[n];
+        dim = n; c = new double[n];
         for(int i = 0; i < dim; i++) c[i] = 0;
     }
-    Vector(float x, float y) {
-        dim = 2; c = new float[2];
+    Vector(double x, double y) {
+        dim = 2; c = new double[2];
         c[0] = x; c[1] = y;
     }
-    Vector(float x, float y, float z) {
-        dim = 3; c = new float[3];
+    Vector(double x, double y, double z) {
+        dim = 3; c = new double[3];
         c[0] = x; c[1] = y; c[2] = z;
     }
     Vector(const Vector& other) {
-        dim = other.dim; c = new float[dim];
+        dim = other.dim; c = new double[dim];
         for(int i = 0; i < dim; i++) c[i] = other[i];
     }
     ~Vector() { delete[] c; }
 
-    float& operator[](int index) const {
+    double& operator[](int index) {
         assert(index < dim); // programa crasha se indice >= dimensao do vetor
+        return c[index];
+    }
+    double operator[](int index) const {
+        assert(index < dim);
         return c[index];
     }
 
@@ -53,8 +59,8 @@ public:
         for(int i = 0; i < dim; i++) (*this)[i] -= r[i];
     }
 
-    float dot(const Vector& r) {
-        float sum = 0;
+    double dot(const Vector& r) {
+        double sum = 0;
         for(int i = 0; i < dim; i++) sum += (*this)[i] * r[i];
         return sum;
     }
