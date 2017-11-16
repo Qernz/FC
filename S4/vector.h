@@ -10,7 +10,8 @@ community. */
 
 #include <iostream>
 #include <assert.h>
-
+#include <cmath>
+#include <fstream>
 class Vector {
 private:
     double* c; // componentes
@@ -52,12 +53,10 @@ public:
     }
 
     Vector& operator+=(const Vector& r) {
-        assert(dim == r.dim);
         for(int i = 0; i < dim; i++) (*this)[i] += r[i];
     }
 
     Vector& operator-=(const Vector& r) {
-        assert(dim == r.dim);
         for(int i = 0; i < dim; i++) (*this)[i] -= r[i];
     }
 
