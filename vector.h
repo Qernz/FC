@@ -80,7 +80,7 @@ std::ostream& operator<<(std::ostream& out, const Vector& v) {
 
     return out;
 }
-std::istream& operator>>(std::istream& in, const Vector& v) {
+std::istream& operator>>(std::istream& in, Vector& v) {
     for(int i = 0; i < v.dim; i++) in >> v[i];
     return in;
 }
