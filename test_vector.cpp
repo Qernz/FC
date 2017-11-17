@@ -15,9 +15,10 @@ int main() {
     std::cout << "a - b: " << a - b << std::endl;
     std::cout << "-a: " << -a << std::endl;
     std::cout << "a.dot(b): " << a.dot(b) << std::endl;
-    std::cout << "a[0]: " << a[0] << std::endl;
+    std::cout << "3.141592 * a: " << 3.141592 * a << std::endl;
 
     std::cout << "------- different ways of indexing ------\n";
+    std::cout << "a[0]: " << a[0] << std::endl;
     a[0] = 3;
     std::cout << "a[0] = 3; a[0]: " << a[0] << std::endl;
     double t = a[0]; t = -4;
