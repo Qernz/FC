@@ -1,10 +1,3 @@
-/* 
-- the being only in a headers does affect compile
-times but as these are small projects this effect
-should be small enough.
-- the operator overload follow the most common convention in the C++
-community. */
-
 #ifndef VECTOR_H
 #define VECTOR_H
 

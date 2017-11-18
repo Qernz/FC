@@ -11,5 +11,18 @@ Milton Freitas 84152
 1.b)
     - como foi aproveitada apenas uma função (create_matrix) do código desenvolvido nos laboratórios não considerámos necessário a inclusão de ficheiros inteiros
 
+1.c)
+    COMENTAS TDOSAIFPODSAUFPOSAUFPOAUFPOAUDSPOIU BIXUDO
+
 2.a)
-    METER AQUELE COMENTARIO DO .H DO VECTOR AQUI EM VEZ DE LA, e em portugues
+    - a classe vetor encontra-se no ficheiro vector.h e o conjunto de testes no ficheiro test_vector.cpp
+    - no overload dos operadores foram seguidas as normas mais aceitadas dentro da comunidade de C++
+    - foi utilizada para esta alínea o código escrito durante os laboratórios que implementa uma classe Vector (para vetores de qualquer dimensão)
+    - apesar de a compilação ser atrasada pelo facto de o código se encontrar todo no header (em oposição a definir apenas no header e implementar num ficheiro fonte) considerou-se que num projecto desta magnitude o efeito seria insignificante, neste contexto (pois apenas um ficheiro requer cada um dos headers)
+
+2.b)
+    - o codigo fonte para este exercício encontra-se em g23p3c2.cpp sendo possível compilar com o comando "make ex2"
+
+2.c)
+    - para esta classe foram criados apenas os operadores mais comuns (e que eram necessários para a resolução), de modo a não perder tempo desnessário
+    - o codigo fonte para este exercício encontra-se em g23p3c2c.cpp sendo possível compilar com o comando "make ex2c"

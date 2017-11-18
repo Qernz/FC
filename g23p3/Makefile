@@ -10,5 +10,13 @@ ex2: g23p3c2.o
 g23p3c2.o:
 	g++ -c g23p3c2.cpp -o g23p3c2.o
 
+ex2c: g23p3c2c.o
+	g++ g23p3c2c.o -o ex2c
+g23p3c2c.o:
+	g++ -c g23p3c2c.cpp -o g23p3c2c.o
+
+test_vector:
+	g++ test_vector.cpp -o test_vector
+
 clean:
 	rm *.o
