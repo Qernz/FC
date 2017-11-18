@@ -68,7 +68,18 @@ public:
         for(int i = 0; i < _dim; i++) sum += (*this)[i] * r[i];
         return sum;
     }
+
+    friend Vector med(const Vector& r);
 };
+
+Vector med(const Vector& r) {
+    Vector result(r.dim());
+    for(int i = 1; i < r.dim() - 1; i++) {
+        result[i] = (r[i - 1] + r[i + 1]) / 2;
+    }
+    result[0] = r[0]; result[r.dim() - 1] = r[r.dim() - 1];
+    return result;
+}
 
 std::ostream& operator<<(std::ostream& out, const Vector& v) {
     out << "(";
@@ -121,6 +132,12 @@ Vector operator*(int a, const Vector& r) {
 Vector operator*(double a, const Vector& r) {
     Vector result(r.dim());
     for(int i = 0; i < r.dim(); i++) result[i] = r[i] * a;
+    return result;
+}
+double operator*(const Vector& l, const Vector& r) {
+    assert(l.dim() == r.dim());
+    double result = 0;
+    for(int i = 0; i < r.dim(); i++) result += l[i] * r[i];
     return result;
 }
 
