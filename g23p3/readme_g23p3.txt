@@ -1,18 +1,18 @@
 Miguel Paradinha 84150
 Milton Freitas 84152
 
-- foi criado um Makefile que permite compilar todos os exercicios 
+- foi criado um Makefile que permite compilar todos os exercicios
 
 1.a)
     - a equação utilizada para obter tt1 a partir de tt0 é a seguinte:
     tt1[i][j] = tt0[i][j] + ((k*ht)/(hx*hx)) * (tt0[i][j+1] - 2 *tt0[i][j] + tt0[i][j-1]) + ((j*ht)/(hy*hy)) * (tt0[i+1][j] - 2*tt0[i][j] + tt0[i-1][j])
-    - <COMENTARIO SOBRE A POISSON/LAPLACE>
+    - Reparamos que esta equação de Fourier possui uma derivada em relação ao tempo enquanto que a de Poisson não pelo que temos um termo extra a ter em conta. A equação de Fourier também não tem um termo não homogénio como a carga na equação de Poisson pelo que não se tem de ter em conta aqui.
 
 1.b)
     - como foi aproveitada apenas uma função (create_matrix) do código desenvolvido nos laboratórios não considerámos necessário a inclusão de ficheiros inteiros
 
 1.c)
-    COMENTAS TDOSAIFPODSAUFPOSAUFPOAUFPOAUDSPOIU BIXUDO
+    No limite deveria ser um plano. 
 
 2.a)
     - a classe vetor encontra-se no ficheiro vector.h e o conjunto de testes no ficheiro test_vector.cpp

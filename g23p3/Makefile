@@ -1,4 +1,4 @@
-all: ex1 ex2
+all: ex1 ex2 ex2c
 
 ex1: g23p3c1.o
 	g++ g23p3c1.o -o ex1

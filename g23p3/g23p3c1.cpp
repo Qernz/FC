@@ -52,9 +52,9 @@ int main()
 void calcula(double** tt0, double** tt1, double hx, double hy, double ht, int n_print, int n, int nx, int ny, double ka )
 {
     ofstream dados;
-    int caramba;
+
     dados.open("resultados1.txt");
-    //cout << hx << " " << hy << " " << ht << " " << n_print << " " << n << " " << nx << " " << ny;
+    
 
     for( int i = 0; i < n; i++)
     {
@@ -63,20 +63,12 @@ void calcula(double** tt0, double** tt1, double hx, double hy, double ht, int n_
             for (int k = 1; k < ny - 1; k++)
             {
                 tt1[j][k] = tt0[j][k] + ((ka*ht)/(hx*hx)) * (tt0[j][k+1] - 2 *tt0[j][k] + tt0[j][k-1]) + ((ka*ht)/(hy*hy)) * (tt0[j+1][k] - 2*tt0[j][k] + tt0[j-1][k]);
-                //data2 << v[j][k] << " ";
-                //cout << tt0[j][k] << endl << (tt0[j][k+1] - 2 *tt0[j][k] + tt0[j][k-1])<< endl;
-                //cout << ((ka*ht)/(hx*hx)) << endl;
-                //cout << tt0[j][k] << " ";
-                //cout << tt1[j][k] << " ";
-                //cout << ((k*ht)/(hy*hy)) << "    " << (tt0[j+1][k] - 2 *tt0[j][k] + tt0[j-1][k]) <<  endl;
-                //cin >> caramba;
+
             }
-            //cout << endl;
-            //data2 << endl;
+
 
         }
-        //data2 << endl << endl;
-        //cin >> caramba;
+
         if (i%3000 == 0)
         {
             dados << i << endl;

@@ -49,23 +49,18 @@ void calcula(Vector tt0, Vector tt1, double hx, double hy, double ht, int n_prin
     ofstream dados;
     int caramba;
     dados.open("resultados2.txt");
-    //cout << hx << " " << hy << " " << ht << " " << n_print << " " << n << " " << nx << " " << ny;
+    
 
     for( int i = 0; i < n; i++)
     {
 
         tt1 = tt0 + ((ka*ht)/(hx*hx)) * 2 * (med(tt0) - tt0);
-        if (i%3000 == 0) cout << tt0 << endl;
-        /*{
-            dados << i << endl;
-            for (int l = 0; l< nx ;l++)
-            {
-                for (int m = 0; m < ny; m++)
-                {
-                    dados << endl << l << " " << m << " " <<  tt0[l][m] << endl;
-                }
-            }
-        }*/
+        if (i%3000 == 0)
+        for (int j = 0; j< nx; j++)
+        {
+            dados << i/100 << " " << tt0[j] << endl;
+        }
+
         tt0 = tt1;
 
     }
