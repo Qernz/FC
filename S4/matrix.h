@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <assert.h>
+#include <cmath>
 
 class Matrix {
     double **p;
@@ -15,11 +16,19 @@ public:
        {
            return parent.p[row][col];
        }
+       double operator[](int col) const
+       {
+           return parent.p[row][col];
+       }
    private:
        CRow(Matrix &parent_, int row_) :
            parent(parent_),
            row(row_)
        {}
+          /* CRow(const Matrix &parent_, int row_) :
+               parent( parent_),
+               row(row_)
+           {}*/
 
        Matrix& parent;
        int row;
@@ -29,6 +38,10 @@ public:
    {
        return CRow(*this, row);
    }
+   /*CRow operator[](int row) const
+   {
+       return CRow(*this, row);
+   }*/
     int nx, ny;
     Matrix(int n1, int n2, double val)
     {
@@ -105,6 +118,11 @@ Matrix operator*(double a, const Matrix& r)
     return result;
 }
 
+Matrix operator/(const Matrix& r, double a )
+{
+    return (1/a)*r ;
+}
+
 Matrix operator+(const Matrix& l, const Matrix& r)
 {
     Matrix result(r.nx,r.ny, 0);
@@ -147,10 +165,21 @@ Matrix med(const Matrix& m)
     return n;
 }
 
-
-Matrix operator*(const Matrix& l, const Matrix & r)
+double mod(const Matrix& l)
 {
-    Matrix result(r.nx, r.ny, 0);
+    double sum = 0;
+    for(int i = 0; i < l.nx; i++)
+    {
+        sum += l.get(i,0)*l.get(i,0);
+    }
+    return sqrt(sum);
+}
+
+
+
+/*Matrix operator*(const Matrix& l, const Matrix & r)
+{
+    Matrix result(l.nx, r.ny, 0);
     for(int k = 0; k < r.nx; k++)
     {
         for(int i = 0; i < r.nx ; i++)
@@ -162,6 +191,148 @@ Matrix operator*(const Matrix& l, const Matrix & r)
         }
     }
     return result;
+}*/
+Matrix operator*(const Matrix& l, const Matrix & r)
+{
+    Matrix result(l.nx, r.ny, 0);
+    for(int i = 0; i < l.nx; i++)
+    {
+        for(int j = 0; j < r.ny ; j++)
+        {
+            for(int k = 0; k< r.nx; k++)
+            {
+                result.get(i,j) += l.get(i,k) * r.get(k,j);
+            }
+        }
+    }
+    return result;
+}
+
+double doublefy(const Matrix& l)
+{
+    if(l.nx == 1 && l.ny ==1)
+    {
+        return l.get(0,0);
+    }
+}
+Matrix transpose(const Matrix& l)
+{
+
+    Matrix n(l.ny, l.nx,0);
+    for(int i = 0; i < l.nx; i++)
+    {
+        for (int j = 0; j< l.ny; j++)
+        {
+            n.get(j,i) = l.get(i,j);
+        }
+    }
+    return n;
+}
+Matrix inverse(const Matrix& l)
+{
+    int n = l.nx;
+    double d = 0;
+    Matrix A(l.nx,2*l.ny,0);
+    Matrix res(l.nx, l.ny,0);
+    for(int i = 0; i < l.nx; i++)
+    {
+        for (int j = 0; j < l.ny; j++)
+        {
+            A.get(i,j) = l.get(i,j);
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j< 2 * n; j++)
+        {
+            if (j == i+n )
+            {
+                A.get(i,j) = 1;
+            }
+        }
+    }
+    //cout << A << endl;
+    //I[0][0] = I[1][1] = I[2][2] = 1;
+    //C = A-B;
+    //cout << C << endl;
+    //cout << A[1][2]<< endl;
+    //A[1][2] = 0;
+    //C = A + B;
+    //cout << C[1][2]<< endl;
+
+    // vamos gauss-jordar isto
+    //n = A.getsize();
+    //cout << n << endl;
+    /*A[0][0] = 1; A[0][1] = 3; A[0][2] = 1;
+    A[1][0] = 2; A[1][1] = 0; A[1][2] = 2;
+    A[2][0] = 2; A[2][1] = 1; A[2][2] = 0;
+    A[0][3] = A[1][4] = A[2][5] = 1;
+    cout << A << endl;*/
+    /*for (int k = 0; k< n ; k++){
+        max = A[K][k];
+        line = 0;
+        for(int i = 0; i< n; i++)
+        {
+            if(A[i][k] > max)
+            {
+                max = A[i][k];
+                line = i;
+            }
+        }
+        if(line > k)
+        {
+
+        }*/
+        for(int i = n-1; i > 0; i--)
+        {
+            if(A.get(i-1,0) < A.get(i,0))
+            {
+                for(int j = 0; j < 2*n ; j++)
+                {
+                    d = A.get(i,j);
+                    A.get(i,j) = A.get(i-1,j);
+                    A.get(i-1,j) = d;
+                }
+            }
+            {
+        }
+
+
+        //cout << A << endl;
+
+        for (int i = 0; i < n; i ++)
+        {
+            for(int j = 0; j < n; j++)
+                if (j!=i)
+                {
+                    d=A.get(j,i)/A.get(i,i);
+                    for(int k = 0; k < 2*n; k++)
+                    {
+                        A.get(j,k) -= A.get(i,k)*d;
+                    }
+                }
+            }
+        }
+        //cout << A << endl;
+
+        for (int i = 0; i < n; i++)
+        {
+            d = A.get(i,i);
+            for(int j = 0; j < 2*n; j++)
+            {
+                A.get(i,j) = A.get(i,j)/d;
+            }
+        }
+        for (int i = 0; i < l.nx; i++)
+        {   for (int j = 0; j < l.ny; j++)
+            {
+                res.get(i,j) = A.get(i,j+n);
+            }
+        }
+        int g;
+        //std::cout <<"este é o A:"<< std::endl << A << std::endl << res << std::endl;
+
+        return res;
 }
 
 
