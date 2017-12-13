@@ -131,21 +131,32 @@ int main()
             }
         //cout << M << endl;
         Matrix V(n,1,0);
+        Matrix V2(n,1,0);
+        Matrix V3(n,1,0);
         Matrix auxV(n,1,0);
+        Matrix auxV2(n,1,0);
         V[2][0] = 1;
         Matrix W(1,n,0);
+        V = V/mod(V);
         auxV = V;
         //cout << V << endl;
         double lambda;
+        double lambda2;
         double a;
         int g;
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 100; i++)
         {
             V = M*V;
+            V = V/mod(V);
+            cout << V << endl;
+            V2 = V - auxV;
+            V2 = V2/mod(V2);
+            cout << V2 << endl;
+            auxV2 = V2;
             //cout << V << endl;
             //cout << mod(V) << endl;
-
-            V = V/mod(V);
+            V3 = V2 - auxV2;
+            cout << V3 << endl;
             //cout << V << endl;
             W = transpose(V);
             //cout << V << endl << W << endl;
@@ -156,17 +167,18 @@ int main()
 
 
         }
-
-        cout << lambda << endl;
+        cout << lambda << endl << V << endl;
+    //   cout << lambda << endl;
         Matrix N(n,n,0);
         N = inverse(M);
-        cout << V << endl;
-        auxV = auxV/mod(auxV);
-        Matrix V2(n,1,0);
-        V2 = V - auxV;
+        //cout << V << endl;
+        //auxV = auxV/mod(auxV);
+        //Matrix V2(n,1,0);
+        //Matrix V3(n,1,0);
+        V2 = auxV - (auxV*V)/mod(V);
         cout << V2 << endl;
-        double lambda2 = 0;
-        for (int i = 0; i < 1000; i++)
+        
+        /*for (int i = 0; i < 100; i++)
         {
             V2 = M*V2;
             //cout << V << endl;
@@ -181,7 +193,7 @@ int main()
             lambda2 = doublefy(W * M * V2);
             //cout << lambda << endl;
         }
-        cout << lambda2 << endl << V2 << endl;
+        cout << lambda2 << endl << V2 << endl;*/
 
     dados.close();
     return 0;
