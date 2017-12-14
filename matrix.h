@@ -21,7 +21,7 @@ public:
             lines[i].init(ny);
             if(init != 0) { // o vector ja inicializa os elementos a 0
                 // preencher todo o vector e portanto toda a matriz
-               for(int j = 0; j < ny; j++) lines[i][j] = init; 
+               for(int j = 0; j < ny; j++) lines[i][j] = init;
             }
         }
     }
@@ -185,6 +185,7 @@ Matrix inverse(const Matrix& l) {
     double d = 0;
     Matrix A(l.nx,2*l.ny,0);
     Matrix res(l.nx, l.ny,0);
+    // copiar matriz original
     for(int i = 0; i < l.nx; i++)
     {
         for (int j = 0; j < l.ny; j++)
@@ -192,6 +193,7 @@ Matrix inverse(const Matrix& l) {
             A[i][j] = l[i][j];
         }
     }
+    //adicionar identidade à direita
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j< 2 * n; j++)
@@ -202,6 +204,7 @@ Matrix inverse(const Matrix& l) {
             }
         }
     }
+    // sorting
         for(int i = n-1; i > 0; i--)
         {
             if(A[i-1][0] < A[i][0])
@@ -213,10 +216,10 @@ Matrix inverse(const Matrix& l) {
                     A[i-1][j] = d;
                 }
             }
-            {
+
         }
 
-
+        // aqui assim, a matriz é diagonolizada por gauss jordan
         for (int i = 0; i < n; i ++)
         {
             for(int j = 0; j < n; j++)
@@ -228,9 +231,9 @@ Matrix inverse(const Matrix& l) {
                         A[j][k] -= A[i][k]*d;
                     }
                 }
-            }
         }
 
+        // passar à identidade
         for (int i = 0; i < n; i++)
         {
             d = A[i][i];
@@ -239,13 +242,15 @@ Matrix inverse(const Matrix& l) {
                 A[i][j] = A[i][j]/d;
             }
         }
+
+        //passar a inversa para a matriz resultado
         for (int i = 0; i < l.nx; i++)
         {   for (int j = 0; j < l.ny; j++)
             {
                 res[i][j] = A[i][j+n];
             }
         }
-        int g;
+
 
         return res;
 }

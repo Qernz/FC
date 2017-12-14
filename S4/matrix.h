@@ -294,7 +294,6 @@ Matrix inverse(const Matrix& l)
                     A.get(i-1,j) = d;
                 }
             }
-            {
         }
 
 
@@ -312,7 +311,6 @@ Matrix inverse(const Matrix& l)
                     }
                 }
             }
-        }
         //cout << A << endl;
 
         for (int i = 0; i < n; i++)

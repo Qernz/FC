@@ -122,11 +122,11 @@ int main()
         {
             B[i][0] = 2;
         }
+        {
         C = M * B;
         //cout << M << endl << B << endl << C<< endl;
         for (int i = 0; i< n; i++)
             for (int j = 0; j<n ; j++)
-            {
                 dados >> M[i][j];
             }
         //cout << M << endl;
@@ -137,37 +137,71 @@ int main()
         Matrix auxV2(n,1,0);
         V[2][0] = 1;
         Matrix W(1,n,0);
+        Matrix W2(1,n,0);
+        Matrix W3(1,n,0);
         V = V/mod(V);
         auxV = V;
         //cout << V << endl;
         double lambda;
         double lambda2;
+        double lambda3;
         double a;
+        double b;
         int g;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 20; i++)
         {
             V = M*V;
             V = V/mod(V);
-            cout << V << endl;
+            //cout << V << endl;
             V2 = V - auxV;
             V2 = V2/mod(V2);
-            cout << V2 << endl;
-            auxV2 = V2;
+            //cout << V2 << endl;
+
             //cout << V << endl;
             //cout << mod(V) << endl;
-            V3 = V2 - auxV2;
-            cout << V3 << endl;
+            if (i > 0)
+            {
+                V3 = V2 - auxV2;
+                V3 = V3/mod(V3);
+                //cout << V3 << endl;
+                W3 = transpose(V3);
+                lambda3 = doublefy(W3 * M * V3);
+
+            }
+
             //cout << V << endl;
             W = transpose(V);
+            W2 = transpose(V2);
             //cout << V << endl << W << endl;
             //cin >> g;
             //cout << V << endl << W << endl << W * M * V << endl;
-            lambda = doublefy(W * M * V);
-            //cout << lambda << endl;
 
+            /*a = 0;
+            b = auxV[0][0];
+            for(int j = 0; j <3; j++)
+            {
+                if (V[j][0] > a)
+                {
+                    a = j;
+                }
+            }
+            lambda = V[a][0]/auxV[a][0];*/
+            /*for(int j = 1; j <3; j++)
+            {
+                if (auxV[j][0] > b)
+                {
+                    b = auxV[j][0];
+                }
+            }*/
+            //lambda = a/b;
+            lambda = doublefy(W * M * V);
+            lambda2 = doublefy(W2 * M * V2);
+            //cout << lambda << endl;
+            auxV = V;
+            auxV2 = V2;
 
         }
-        cout << lambda << endl << V << endl;
+        cout << lambda << endl << V << endl << lambda2 << endl << V2 << endl << lambda3 << endl<< V3;
     //   cout << lambda << endl;
         Matrix N(n,n,0);
         N = inverse(M);
@@ -175,9 +209,9 @@ int main()
         //auxV = auxV/mod(auxV);
         //Matrix V2(n,1,0);
         //Matrix V3(n,1,0);
-        V2 = auxV - (auxV*V)/mod(V);
-        cout << V2 << endl;
-        
+        // V2 = auxV - (auxV*V)/mod(V);
+        //cout << V2 << endl;
+
         /*for (int i = 0; i < 100; i++)
         {
             V2 = M*V2;
