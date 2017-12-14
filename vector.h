@@ -17,6 +17,11 @@ private:
     int _dim;
 
 public:
+    Vector() {} // construtor por defeito
+    void init(int n) {
+        _dim = n; c = new double[n];
+        for(int i = 0; i < _dim; i++) c[i] = 0;
+    }
     Vector(int n) {
         _dim = n; c = new double[n];
         for(int i = 0; i < _dim; i++) c[i] = 0;
